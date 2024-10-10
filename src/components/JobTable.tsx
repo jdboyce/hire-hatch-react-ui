@@ -10,10 +10,15 @@ import {
 } from "@mui/material";
 
 import { jobData } from "../data/JobData.ts";
+import { Job } from "../types/Job.ts";
 
-function JobTable() {
+interface JobTableProps {
+  onSelectJob: (job: Job) => void;
+}
+
+const JobTable: React.FC<JobTableProps> = ({ onSelectJob }) => {
   return (
-    <TableContainer component={Paper} className="Table">
+    <TableContainer component={Paper} className="job-table">
       <Table>
         <TableHead>
           <TableRow>
@@ -23,12 +28,11 @@ function JobTable() {
             <TableCell>Status</TableCell>
             <TableCell>Source</TableCell>
             <TableCell>Posting URL</TableCell>
-            <TableCell>Notes</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {jobData.map((row, index) => (
-            <TableRow key={index}>
+          {jobData.map((row: Job, index: number) => (
+            <TableRow key={index} onClick={() => onSelectJob(row)}>
               <TableCell>{row.jobTitle}</TableCell>
               <TableCell>{row.companyName}</TableCell>
               <TableCell>{row.priority}</TableCell>
@@ -39,13 +43,12 @@ function JobTable() {
                   {row.postingUrl}
                 </a>
               </TableCell>
-              <TableCell>{row.notes}</TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
   );
-}
+};
 
 export default JobTable;

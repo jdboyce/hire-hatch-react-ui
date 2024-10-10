@@ -1,12 +1,12 @@
 import React from "react";
 import "./App.css";
-import JobTable from "./components/JobTable";
+import JobManager from "./components/JobManager.tsx";
 
 function App() {
   return (
-    <div className="App">
+    <div className="app">
       <h1>Hire Hatch</h1>
-      <JobTable />
+      <JobManager />
     </div>
   );
 }

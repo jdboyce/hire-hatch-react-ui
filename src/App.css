@@ -1,0 +1,46 @@
+.app {
+  text-align: center;
+}
+
+.job-manager {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.job-table {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  width: 90% !important; /*TODO: Fix styles.*/
+}
+
+.job-detail {
+  width: 70% !important; /*TODO: Fix styles.*/
+}
+
+.job-detail-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.grid-container > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.grid-container .notes {
+  grid-column: span 3;
+}

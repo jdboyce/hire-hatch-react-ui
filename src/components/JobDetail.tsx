@@ -59,3 +59,5 @@ const JobDetail: React.FC<JobDetailProps> = ({ job }) => {
 };
 
 export default JobDetail;
+
+// TODO: Implement tests for component after completing proof of concept.

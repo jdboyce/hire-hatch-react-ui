@@ -9,14 +9,14 @@ import {
   Paper,
 } from "@mui/material";
 
-import { jobData } from "../data/JobData.ts";
 import { Job } from "../types/Job.ts";
 
 interface JobTableProps {
+  jobs: Job[];
   onSelectJob: (job: Job) => void;
 }
 
-const JobTable: React.FC<JobTableProps> = ({ onSelectJob }) => {
+const JobTable: React.FC<JobTableProps> = ({ jobs, onSelectJob }) => {
   return (
     <TableContainer component={Paper} className="job-table">
       <Table>
@@ -31,7 +31,7 @@ const JobTable: React.FC<JobTableProps> = ({ onSelectJob }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {jobData.map((row: Job, index: number) => (
+          {jobs.map((row: Job, index: number) => (
             <TableRow key={index} onClick={() => onSelectJob(row)}>
               <TableCell>{row.jobTitle}</TableCell>
               <TableCell>{row.companyName}</TableCell>
@@ -52,3 +52,5 @@ const JobTable: React.FC<JobTableProps> = ({ onSelectJob }) => {
 };
 
 export default JobTable;
+
+// TODO: Implement tests for component after completing proof of concept.

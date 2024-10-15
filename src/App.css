@@ -1,5 +1,14 @@
+body {
+  background-color: gray;
+}
+
 .app {
   text-align: center;
+}
+
+.app h1 {
+  margin-top: 15px;
+  margin-bottom: 0;
 }
 
 .job-manager {
@@ -11,36 +20,122 @@
   width: 100%;
 }
 
-.job-table {
+.job-manager .job-table {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-top: 20px;
-  width: 90% !important; /*TODO: Fix styles.*/
+  width: 90%;
+  height: calc(60% - 40px);
+  border-radius: 8px;
+}
+
+.table-container {
+  margin: 20px;
+  padding: 20px;
+  background-color: #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+  height: 100%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 12px 15px;
+  border: 1px solid #bbb;
+  text-align: left;
+}
+
+th {
+  background-color: #d0d0d0;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #e0e0e0;
+}
+
+tr:nth-child(odd) {
+  background-color: #c4ccd4;
+}
+
+tr:hover {
+  background-color: #c0c0c0;
+}
+
+tr.selected {
+  background-color: #a0c0a0;
 }
 
 .job-detail {
-  width: 70% !important; /*TODO: Fix styles.*/
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  height: calc(40% - 40px);
+  padding: 20px;
+  background-color: #e0e0e0;
+  border-top: 1px solid #bbb;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  border-radius: 8px;
+  width: 87.5%;
+  margin: 0 auto;
 }
 
 .job-detail-form {
   display: flex;
   flex-direction: column;
-  margin-top: 40px;
+  height: 100%;
 }
 
 .grid-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  gap: 20px;
+  padding: 0 20px;
 }
 
 .grid-container > div {
   display: flex;
   flex-direction: column;
+  padding: 0 10px;
 }
 
-.grid-container .notes {
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  text-align: left;
+  font-size: 12px;
+}
+
+input[type="text"],
+textarea {
+  padding: 10px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  background-color: #fff;
+  font-size: 14px;
+  resize: none;
+  width: 100%;
+}
+
+input[type="text"]:read-only,
+textarea:read-only {
+  background-color: #d0d0d0;
+}
+
+.notes {
   grid-column: span 3;
+}
+
+textarea {
+  height: 40px;
 }

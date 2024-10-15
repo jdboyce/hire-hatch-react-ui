@@ -10,13 +10,10 @@ import {
 } from "@mui/material";
 
 import { Job } from "../types/Job.ts";
+import { useJob } from "../context/JobContext.tsx";
 
-interface JobTableProps {
-  jobs: Job[];
-  onSelectJob: (job: Job) => void;
-}
-
-const JobTable: React.FC<JobTableProps> = ({ jobs, onSelectJob }) => {
+const JobTable: React.FC = () => {
+  const { jobs, setSelectedJob } = useJob();
   return (
     <TableContainer component={Paper} className="job-table">
       <Table>
@@ -32,7 +29,7 @@ const JobTable: React.FC<JobTableProps> = ({ jobs, onSelectJob }) => {
         </TableHead>
         <TableBody>
           {jobs.map((row: Job, index: number) => (
-            <TableRow key={index} onClick={() => onSelectJob(row)}>
+            <TableRow key={index} onClick={() => setSelectedJob(row)}>
               <TableCell>{row.jobTitle}</TableCell>
               <TableCell>{row.companyName}</TableCell>
               <TableCell>{row.priority}</TableCell>

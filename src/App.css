@@ -8,7 +8,9 @@ body {
 
 .app h1 {
   margin-top: 15px;
-  margin-bottom: 0;
+  margin-bottom: 15px;
+  left: 75px;
+  position: absolute;
 }
 
 .job-manager {
@@ -25,7 +27,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 40px;
   width: 90%;
   height: calc(60% - 40px);
   border-radius: 8px;
@@ -146,13 +148,15 @@ textarea {
   height: 40px;
 }
 
-.grid-container .buttons {
+.grid-container .buttons,
+.job-table-actions {
   display: flex;
   justify-content: flex-end;
   align-items: end;
   grid-column: span 1;
   gap: 10px;
   flex-direction: row;
+  padding-bottom: 10px;
 }
 
 button {
@@ -166,4 +170,9 @@ button {
 
 button[type="button"] {
   background-color: #6c757d;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
 }

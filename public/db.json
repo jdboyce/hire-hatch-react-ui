@@ -1,6 +1,7 @@
 {
   "jobs": [
     {
+      "id": "1",
       "jobTitle": "Frontend Developer",
       "companyName": "Tech Innovations Inc.",
       "priority": "High",
@@ -10,6 +11,7 @@
       "notes": "Angular-focused team. Values collaboration and continuous learning. Good work-life balance."
     },
     {
+      "id": "2",
       "jobTitle": "Angular Developer",
       "companyName": "Web Wizards Agency",
       "priority": "High",
@@ -19,6 +21,7 @@
       "notes": "Startup culture. Encourages candid dialogue. Flexible and remote. Great reviews."
     },
     {
+      "id": "3",
       "jobTitle": "Full Stack Developer",
       "companyName": "Creative Minds Co.",
       "priority": "Medium",
@@ -28,6 +31,7 @@
       "notes": ".NET Core and React in stack. Good salary. Offers annual tech conference tickets."
     },
     {
+      "id": "4",
       "jobTitle": "Software Engineer",
       "companyName": "Digital Solutions Ltd.",
       "priority": "Medium",
@@ -37,6 +41,7 @@
       "notes": "Dynamic culture with emphasis on agile development. Competitive benefits."
     },
     {
+      "id": "5",
       "jobTitle": "Lead Developer",
       "companyName": "InnovateTech Solutions",
       "priority": "Low",

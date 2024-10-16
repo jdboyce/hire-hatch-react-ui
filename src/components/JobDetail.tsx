@@ -1,22 +1,21 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Job } from "../types/Job.ts";
 import { useJob } from "../context/JobContext.tsx";
 
 const JobDetail: React.FC = () => {
-  const { selectedJob } = useJob();
-  const { register, setValue, handleSubmit, reset } = useForm<Job>();
+  const { selectedJob, saveJob } = useJob();
+  const { register, setValue, handleSubmit, reset } = useForm();
 
   useEffect(() => {
     if (selectedJob) {
       Object.keys(selectedJob).forEach((key) => {
-        setValue(key as keyof Job, selectedJob[key as keyof Job]);
+        setValue(key, selectedJob[key]);
       });
     }
   }, [selectedJob, setValue]);
 
-  const onSubmit = (data: Job) => {
-    console.log(data);
+  const onSubmit = (data) => {
+    saveJob(data);
   };
 
   const onCancel = () => {

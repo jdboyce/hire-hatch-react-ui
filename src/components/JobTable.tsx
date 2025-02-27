@@ -15,6 +15,7 @@ const JobTable: React.FC = () => {
 
   const handleAdd = () => {
     const newJob = {
+      id: "",
       jobTitle: "",
       companyName: "",
       priority: "",
@@ -24,6 +25,7 @@ const JobTable: React.FC = () => {
       notes: "",
     };
     addJob(newJob);
+    setSelectedJob(newJob);
   };
 
   const handleDelete = () => {

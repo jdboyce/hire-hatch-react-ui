@@ -176,3 +176,10 @@ button:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
 }
+
+.no-job-selected {
+  padding-top: 30px;
+  font-size: 20px;
+  text-align: center;
+  color: #cccccc;
+}

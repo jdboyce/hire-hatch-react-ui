@@ -1,7 +1,7 @@
 import { Job } from "../types/Job.ts";
 import { v4 as uuidv4 } from "uuid";
 
-const API_URL = "http://localhost:3001/jobs";
+const API_URL = "http://localhost/hire-hatch-php-server/api/jobs";
 
 export const fetchJobsFromServer = async () => {
   const response = await fetch(API_URL);
@@ -9,7 +9,8 @@ export const fetchJobsFromServer = async () => {
     const errorText = await response.text();
     throw new Error(`Failed to fetch jobs: ${errorText}`);
   }
-  return response.json();
+  const data = await response.json();
+  return data;
 };
 
 export const saveJobToServer = async (job: Job) => {

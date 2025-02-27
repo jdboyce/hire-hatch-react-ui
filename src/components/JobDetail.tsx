@@ -25,7 +25,7 @@ const JobDetail: React.FC = () => {
   };
 
   if (!selectedJob) {
-    return <div>Select a job to see details</div>;
+    return <div className="no-job-selected">Select a job to see details.</div>;
   }
 
   return (

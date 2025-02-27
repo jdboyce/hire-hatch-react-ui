@@ -5,11 +5,13 @@ import {
   saveJobToServer,
   deleteJobFromServer,
 } from "../services/jobService.ts";
+import { useDispatch, useSelector } from "react-redux";
+import { setSelectedJob } from "../store/actions/selectedJobActions.js";
 
 const JobContext = createContext<{
   jobs: Job[];
   selectedJob: Job | null;
-  setSelectedJob: React.Dispatch<React.SetStateAction<Job | null>>;
+  setSelectedJob: (job: Job | null) => void;
   fetchJobs: () => Promise<void>;
   saveJob: (job: Job) => Promise<void>;
   addJob: (job: Job) => void;
@@ -26,7 +28,10 @@ const JobContext = createContext<{
 
 export const JobProvider = ({ children }) => {
   const [jobs, setJobs] = useState<Job[]>([]);
-  const [selectedJob, setSelectedJob] = useState<Job | null>(null);
+  const selectedJob = useSelector(
+    (state: { selectedJob: Job | null }) => state.selectedJob
+  );
+  const dispatch = useDispatch();
 
   const fetchJobs = async () => {
     try {
@@ -41,16 +46,19 @@ export const JobProvider = ({ children }) => {
     try {
       const savedJob = await saveJobToServer(job);
       setJobs((prevJobs) => {
-        const jobIndex = prevJobs.findIndex((j) => j.id === job.id);
+        const filteredJobs = prevJobs.filter(
+          (j) => j.id !== "" && j.id !== job.id
+        );
+        const jobIndex = filteredJobs.findIndex((j) => j.id === job.id);
         if (jobIndex > -1) {
-          const updatedJobs = [...prevJobs];
+          const updatedJobs = [...filteredJobs];
           updatedJobs[jobIndex] = savedJob;
           return updatedJobs;
         } else {
-          return [...prevJobs, savedJob];
+          return [...filteredJobs, savedJob];
         }
       });
-      setSelectedJob(savedJob);
+      dispatch(setSelectedJob(savedJob));
     } catch (error) {
       console.error("Failed to save job:", error);
     }
@@ -58,14 +66,14 @@ export const JobProvider = ({ children }) => {
 
   const addJob = (job: Job) => {
     setJobs((prevJobs) => [...prevJobs, job]);
-    setSelectedJob(job);
+    dispatch(setSelectedJob(job));
   };
 
   const deleteJob = async (id: string) => {
     try {
       await deleteJobFromServer(id);
       setJobs((prevJobs) => prevJobs.filter((job) => job.id !== id));
-      setSelectedJob(null);
+      dispatch(setSelectedJob(null));
     } catch (error) {
       console.error("Failed to delete job:", error);
     }
@@ -80,7 +88,7 @@ export const JobProvider = ({ children }) => {
       value={{
         jobs,
         selectedJob,
-        setSelectedJob,
+        setSelectedJob: (job) => dispatch(setSelectedJob(job)),
         fetchJobs,
         saveJob,
         addJob,
